@@ -13,3 +13,6 @@ except ModuleNotFoundError:
 finally:
     from reprint import output
 
+
+def cpu_clock():
+    return json.load(os.popen('lscpu -e --json'))
