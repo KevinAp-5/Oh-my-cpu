@@ -34,6 +34,10 @@ def cleans_cpu_clock_dict(lscpu_dict):
     return cpu_clock
 
 
+def update_clock():
+    return cleans_cpu_clock_dict(cpu_clock())
+
+
 def extract_only_clock(cpu_temp):
     new_cpu_temp = dict()
     for core, temps_dict in cpu_temp.items():
