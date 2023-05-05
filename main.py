@@ -32,3 +32,12 @@ def cleans_cpu_clock_dict(lscpu_dict):
                 cpu_clock[f"Core {core_count}"] = clean_content(content)
         core_count += 1
     return cpu_clock
+
+
+def extract_only_clock(cpu_temp):
+    new_cpu_temp = dict()
+    for core, temps_dict in cpu_temp.items():
+        for title, temp in temps_dict.items():
+            if "input" in title:
+                new_cpu_temp[core] = temp
+    return new_cpu_temp
