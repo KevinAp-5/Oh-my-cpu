@@ -37,8 +37,12 @@ def cleans_cpu_clock_dict(lscpu_dict):
 def update_clock():
     return cleans_cpu_clock_dict(cpu_clock())
 
+def cpu_temp():
+    sensors_dict = json.load(os.popen('sensors -j'))
+    sensors_dict.pop(next(iter(sensors_dict)))
+    return sensors_dict
 
-def extract_only_clock(cpu_temp):
+def extract_only_temp(cpu_temp):
     new_cpu_temp = dict()
     for core, temps_dict in cpu_temp.items():
         for title, temp in temps_dict.items():
