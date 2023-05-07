@@ -1,6 +1,5 @@
 import os
 import json
-from contextlib import suppress
 from time import sleep
 
 try:
