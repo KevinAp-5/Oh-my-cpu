@@ -37,10 +37,21 @@ def cleans_cpu_clock_dict(lscpu_dict):
 def update_clock():
     return cleans_cpu_clock_dict(cpu_clock())
 
+
 def cpu_temp():
     sensors_dict = json.load(os.popen('sensors -j'))
     sensors_dict.pop(next(iter(sensors_dict)))
     return sensors_dict
+
+
+def cleans_cpu_temp_dict(sensors_dict):
+    new_sensors = dict()
+    for useless, honeypot in sensors_dict.items():
+        for title, content in honeypot.items():
+            if 'Core' in title:
+                new_sensors[title] = content
+    return new_sensors
+
 
 def extract_only_temp(cpu_temp):
     new_cpu_temp = dict()
@@ -49,3 +60,7 @@ def extract_only_temp(cpu_temp):
             if "input" in title:
                 new_cpu_temp[core] = temp
     return new_cpu_temp
+
+
+def update_temp():
+    return extract_only_clock(cleans_cpu_temp_dict(cpu_temp()))
