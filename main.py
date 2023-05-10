@@ -64,9 +64,22 @@ def extract_only_temp(cpu_temp):
 def update_temp():
     return extract_only_clock(cleans_cpu_temp_dict(cpu_temp()))
 
+
 def go_through(cpu_dict):
     text = ''
     for x in range(len(cpu_dict)):
         text += str(cpu_dict.get(f"Core {x}")) + ' '
     print(text+'\r', flush=True, end='\n') 
+
+
+def runs(function, cpu_dict):
+    while True:
+        try:
+            function(cpu_dict)
+            sleep(0.3)
+        except KeyboardInterrupt:
+            break
+
+
+
 
