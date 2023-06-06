@@ -32,10 +32,9 @@ def cpu_temp():
 
 def cleans_cpu_temp_dict(sensors_dict):
     new_sensors = dict()
-    for useless, honeypot in sensors_dict.items():
-        for title, content in honeypot.items():
-            if 'Core' in title:
-                new_sensors[title] = content
+    for title, content in list(sensors_dict.values())[0].items():
+        if 'Core' in title:
+            new_sensors[title] = content
     return new_sensors
 
 
