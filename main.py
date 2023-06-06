@@ -59,7 +59,7 @@ def go_through(cpu_dict):
     text = ''
     for x in range(len(cpu_dict)):
         text += str(cpu_dict.get(f"Core {x}")) + ' '
-    print(text+'\r', flush=True, end='\n') 
+    return text
 
 
 def runs(function, cpu_dict):
