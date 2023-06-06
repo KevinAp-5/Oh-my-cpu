@@ -52,7 +52,7 @@ def extract_only_temp(cpu_temp):
 
 
 def update_temp():
-    return extract_only_clock(cleans_cpu_temp_dict(cpu_temp()))
+    return extract_only_temp(cleans_cpu_temp_dict(cpu_temp()))
 
 
 def go_through(cpu_dict):
