@@ -61,12 +61,11 @@ def go_through(cpu_dict):
         text += str(cpu_dict.get(f"Core {x}")) + ' '
     return text
 
+if __name__ == '__main__':
+    clean = cleans_cpu_temp_dict(cpu_temp())
+    temp = extract_only_temp(clean)
+    clock = cleans_cpu_clock_dict(cpu_clock())
 
-def runs(function, cpu_dict):
-    while True:
-        try:
-            function(cpu_dict)
-            sleep(0.3)
-        except KeyboardInterrupt:
-            break
+    print(f'  CPU TEMP\n  {go_through(update_temp())}\n')
+    print(f'  CPU CLOCK\n  {go_through(update_clock())}\n')
 
