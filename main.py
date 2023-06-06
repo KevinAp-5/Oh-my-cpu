@@ -51,17 +51,15 @@ def update_temp():
     return extract_only_temp(cleans_cpu_temp_dict(cpu_temp()))
 
 
-def go_through(cpu_dict):
-    text = ''
-    for x in range(len(cpu_dict)):
-        text += str(cpu_dict.get(f"Core {x}")) + ' '
-    return text
+def join_core(cpu_dict):
+    return ' '.join([str(x) for x in cpu_dict.values()])
+
 
 if __name__ == '__main__':
     clean = cleans_cpu_temp_dict(cpu_temp())
     temp = extract_only_temp(clean)
     clock = cleans_cpu_clock_dict(cpu_clock())
 
-    print(f'  CPU TEMP\n  {go_through(update_temp())}\n')
-    print(f'  CPU CLOCK\n  {go_through(update_clock())}\n')
+    print(f'  CPU TEMP\n  {join_core(update_temp())}\n')
+    print(f'  CPU CLOCK\n  {join_core(update_clock())}\n')
 
