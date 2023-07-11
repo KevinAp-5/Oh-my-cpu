@@ -50,8 +50,20 @@ def update_temp():
     return extract_only_temp(cleans_cpu_temp_dict(cpu_temp()))
 
 
+def add_color(temp):
+    if isinstance(temp, str):
+        return temp
+
+    if temp >= 0 and temp < 50:
+        return f'\033[34m{temp}'
+    elif temp >= 50 and temp < 70:
+        return f'\033[33m{temp}'
+    elif temp >= 70 or temp < 0:
+        return f'\033[31m{temp}'
+
+
 def join_core(cpu_dict):
-    return ' '.join([str(x) for x in cpu_dict.values()])
+    return ' '.join([add_color(x) for x in cpu_dict.values()])
 
 
 if __name__ == '__main__':
@@ -60,5 +72,5 @@ if __name__ == '__main__':
     clock = cleans_cpu_clock_dict(cpu_clock())
 
     print(f'  CPU TEMP\n  {join_core(update_temp())}\n')
+    print('\033[39m')
     print(f'  CPU CLOCK\n  {join_core(update_clock())}\n')
-
