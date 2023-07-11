@@ -67,8 +67,8 @@ def join_core(cpu_dict):
 
 
 if __name__ == '__main__':
-    clean = cleans_cpu_temp_dict(cpu_temp())
-    temp = extract_only_temp(clean)
+    clean_temp = cleans_cpu_temp_dict(cpu_temp())
+    temp = extract_only_temp(clean_temp)
     clock = cleans_cpu_clock_dict(cpu_clock())
 
     print(f'  CPU TEMP\n  {join_core(update_temp())}\n')
